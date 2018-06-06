@@ -1,0 +1,29 @@
+body {
+  background-color: lightgrey;
+}
+
+.spacer1 {
+  height: 50px;
+}
+
+.list-title {
+  margin-top: 20px;
+  padding: 16px;
+}
+
+.list {
+  height: 100vh;
+  background-color: #fff;
+}
+
+.collection-item {
+  font-size: 2em;
+}
+
+.brand-logo {
+  margin-left: 20px;
+}
+
+#app {
+  border: 2px solid red;
+}
