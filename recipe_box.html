@@ -63,8 +63,14 @@
         </div>
         <!-- LINK COLLECTION -->
         <div class="card-content collection z-depth-2">
-          <a href="#" class="collection-item"
-          v-for="item in db">{{ item.title }}</a>
+          <!--<a href="#" class="collection-item"
+          v-for="item in db">{{ item.title }}</a>-->
+          <!--<router-link v-for="item in db"
+                       :to="'/recipe/' + item.id"
+                        >{{ item.title }}</router-link>-->
+          <router-link v-for="(item, index) in db"
+                       :to="'/recipe/' + index"
+                        >{{ item.title }}</router-link>
         </div>
 
       </div>
