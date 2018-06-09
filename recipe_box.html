@@ -19,19 +19,42 @@
 </head>
 <body>
 
-  <!-- give our app a nice header -->
-  <nav>
-    <div class="nav-wrapper blue darken-3">
-      <a href="" class="brand-logo yellow-text lighten-4">Recipe Box</a>
-    </div>
-  </nav>
-
-  <!-- provide a spacer between the header and the leader board -->
-  <div class="spacer1"></div>
-
   <div id="app">
+    <!-- give our app a nice header -->
+    <logo></logo>
+
+    <!-- provide a spacer between the header and the leader board -->
+    <div class="spacer1"></div>
+
+    <router-view :db="db"></router-view>
+
+    <!--<recipe-list :db="db"
+            ></recipe-list>-->
+
+    <!--<pre>
+      {{ $data }}
+    </pre>-->
+
+  </div><!-- Vue.js app -->
 
 
+  <!-- provide a spacer at the base of the page -->
+  <div class="spacer2"></div>
+
+
+  <!--                  TEMPLATES                   -->
+
+  <!-- Title bar shown on every page -->
+  <template id="logo">
+    <nav>
+      <div class="nav-wrapper blue darken-3">
+        <a href="" class="brand-logo yellow-text lighten-4">Recipe Box</a>
+      </div>
+    </nav>
+  </template>
+
+  <!-- Recipe list shown on home page -->
+  <template id="list">
     <div class="row">
       <div class="col l6 offset-l3 list z-depth-2">
 
@@ -46,24 +69,39 @@
 
       </div>
     </div>
+  </template>
 
-    <pre>
-      {{ $data }}
-    </pre>
+  <!-- Individual recipe template with dynamic route /recipe/:id -->
+  <template id="recipe">
+    <div class="row">
+      <div class="col l6 offset-l3 list z-depth-2 list">
 
-  </div><!-- Vue.js app -->
+        <div class="list-title center yellow lighten-4 z-depth-2">
+          <h2>{{ db[$route.params.id].title }}</h2>
+        </div>
 
+        <h5>Serves {{ db[$route.params.id].serves}}</h5>
 
-  <!-- provide a spacer at the base of the page -->
-  <div class="spacer2"></div>
+        <div class="divider"></div>
+        <div class="section">
+          <h3>Ingredients</h3>
+          <p class="flow-text">{{ db[$route.params.id].ingredients}}</p>
+        </div>
 
-  <template id="recipe-list">
-    
+        <div class="divider"></div>
+        <div class="section">
+          <h3>Method</h3>
+          <p class="flow-text">{{ db[$route.params.id].method }}</p>
+        </div>
+
+      </div>
+    </div>
   </template>
 
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.min.js"></script>
   <script src="js/recipe.js"></script>
   <script src="js/recipe_box.js"></script>
 
