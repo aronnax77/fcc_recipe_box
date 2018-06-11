@@ -56,7 +56,7 @@
   <!-- Recipe list shown on home page -->
   <template id="list">
     <div class="row">
-      <div class="col l6 offset-l3 list z-depth-2">
+      <div class="col l6 offset-l3 recipe-list z-depth-2">
 
         <div class="list-title center yellow lighten-4 z-depth-2">
           <h3>Recipes</h3>
@@ -68,7 +68,7 @@
           <!--<router-link v-for="item in db"
                        :to="'/recipe/' + item.id"
                         >{{ item.title }}</router-link>-->
-          <router-link class="collection-item"
+          <router-link class="collection-item blue-text"
                        v-for="(item, index) in db"
                        :to="'/recipe/' + index"
                         >{{ item.title }}</router-link>
@@ -81,7 +81,7 @@
   <!-- Individual recipe template with dynamic route /recipe/:id -->
   <template id="recipe">
     <div class="row">
-      <div class="col l6 offset-l3 list z-depth-2 list">
+      <div class="col l6 offset-l3 recipe-list z-depth-2 list">
 
         <div class="list-title center yellow lighten-4 z-depth-2">
           <h2>{{ db[$route.params.id].title }}</h2>
@@ -92,13 +92,13 @@
         <div class="divider"></div>
         <div class="section">
           <h3>Ingredients</h3>
-          <p class="flow-text">{{ db[$route.params.id].ingredients}}</p>
+          <div class="flow-text"><pre>{{ db[$route.params.id].ingredients }}</pre></div>
         </div>
 
         <div class="divider"></div>
         <div class="section">
           <h3>Method</h3>
-          <p class="flow-text">{{ db[$route.params.id].method }}</p>
+          <div class="flow-text"><pre>{{ db[$route.params.id].method }}</pre></div>
         </div>
 
       </div>

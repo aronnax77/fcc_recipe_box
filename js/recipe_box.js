@@ -34,4 +34,5 @@ var main = new Vue({
     recipe: Recipe,
     "recipe-list": RecipeList
   }
+
 });

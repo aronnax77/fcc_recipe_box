@@ -1,9 +1,15 @@
 body {
   background-color: lightgrey;
+  height: 100%;
 }
 
 .spacer1 {
   height: 50px;
+}
+
+/* move the logo away from the left side */
+.brand-logo {
+  margin-left: 20px;
 }
 
 .list-title {
@@ -11,18 +17,24 @@ body {
   padding: 16px;
 }
 
-.list {
+.recipe-list {
   background-color: #fff;
+  height: 100%;
 }
 
 .collection-item {
   font-size: 2em;
 }
 
-.brand-logo {
-  margin-left: 20px;
-}
 
-#app {
+
+/*#app {
+  min-height: 100vh;
   border: 2px solid red;
+}*/
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 0 20px;
 }
