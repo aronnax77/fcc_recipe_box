@@ -68,7 +68,8 @@
           <!--<router-link v-for="item in db"
                        :to="'/recipe/' + item.id"
                         >{{ item.title }}</router-link>-->
-          <router-link v-for="(item, index) in db"
+          <router-link class="collection-item"
+                       v-for="(item, index) in db"
                        :to="'/recipe/' + index"
                         >{{ item.title }}</router-link>
         </div>
