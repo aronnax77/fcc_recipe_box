@@ -48,7 +48,18 @@
   <template id="logo">
     <nav>
       <div class="nav-wrapper blue darken-3">
-        <a href="" class="brand-logo yellow-text lighten-4">Recipe Box</a>
+        <router-link class="brand-logo yellow-text lighten-4" to="/">Recipe Box</router-link>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/editor/new">New</router-link>
+        </li>
+        <li>
+          <router-link to="">About</router-link>
+        </li>
+      </ul>
       </div>
     </nav>
   </template>
@@ -102,6 +113,75 @@
         </div>
 
       </div>
+    </div>
+  </template>
+
+  <!-- new recipe form -->
+  <template id="editor">
+    <div class="row">
+
+      <div class="col l6 offset-l3 recipe-list z-depth-2 list">
+
+        <div class="list-title card center yellow lighten-4 z-depth-2">
+          <h2>Add a New Recipe</h2>
+        </div>
+
+
+
+        <a class="waves-effect waves-light btn right">Save</a>
+
+
+        <div class="divider"></div>
+          <div class="section">
+            <div class="input-field col l12">
+              <input placeholder="Title" id="recipe-title" type="text" class="validate">
+              <label for="recipe-title">Recipe Title</label>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section">
+          <div class="input-field col l3">
+            <input placeholder="No" id="serves" type="number" class="validate">
+            <label for="serves">Serves</label>
+          </div>
+        </div>
+
+
+        <div class="divider"></div>
+        <div class="section">
+          <div class="row">
+             <form class="col s12">
+               <div class="row">
+                 <div class="input-field col l12">
+                   <textarea id="ingredients" class="materialize-textarea"></textarea>
+                   <label for="ingredients">Ingredients</label>
+                 </div>
+               </div>
+             </form>
+           </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section">
+          <div class="row">
+             <form class="col s12">
+               <div class="row">
+                 <div class="input-field col l12">
+                   <textarea id="method" class="materialize-textarea"></textarea>
+                   <label for="method">Method</label>
+                 </div>
+               </div>
+             </form>
+           </div>
+        </div>
+
+
+      </div>
+
+
+
+
     </div>
   </template>
 

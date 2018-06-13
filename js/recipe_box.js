@@ -13,10 +13,15 @@ var Recipe = {
   props: ["db"]
 };
 
+var Editor = {
+  template: "#editor"
+};
+
 // define the routes
 var routes = [
-  {path: "/", component: RecipeList},
-  {path: "/recipe/:id", component: Recipe}
+  {path: "/", component: RecipeList},         //RecipeList
+  {path: "/recipe/:id", component: Recipe},
+  {path: "/editor/new", component: Editor}
 ];
 
 var router = new VueRouter({
@@ -32,7 +37,8 @@ var main = new Vue({
   components: {
     logo: TitleBar,
     recipe: Recipe,
-    "recipe-list": RecipeList
+    "recipe-list": RecipeList,
+    new: Editor
   }
 
 });
