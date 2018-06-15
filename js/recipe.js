@@ -29,3 +29,8 @@ var myRecipes = { chicken_in_spicy_tomato_sauce: {
                 method: "Heat oven to 150 degrees C .  Lightly brush an 6 x 12 in tin with melted fat or oil.\n\n Cut the fat into small pieces and place in a heavy-based saucepan.  Add the golden syrup and sugar and place saucepan over a low heat.\n\nMix the ingredients together, then stir, continuously, with a wooden spoon until the fat has melted and the sugar has just dissolved.\n\n Remove the pan from the heat and stir in the whole and porridge oats.  Mix together until the mixture is evenly combined.\n\n Turn the mixture into the prepared tin and smooth the surface flat with the back of a metal spoon.\n\nBake in the centre of the oven for 40 minutes, until the surface is golden brown.\n\nPlace the tin on a wooden board and, using a sharp knife, cut the biscuit into 10-12 shapes.  Leave the biscuits in the tin until completely cold before removing."
               }
 };
+
+test = {
+  firstName: "Tom",
+  lastName: "Jones"
+};

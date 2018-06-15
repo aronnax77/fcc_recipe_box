@@ -66,11 +66,15 @@ var main = new Vue({
   },
   methods: {
     addNewRecipe: function(rec) {
-      var key;
-      key = "beans_on_toast";
-      this.newRecipe = rec;
+      var key = this.getKey(rec.title);
       this.db[key] = rec;
+    },
+    getKey: function(str) {
+      str = str.toLowerCase();
+      str  = str.split(" ").join("_");
+      return str;
     }
   }
-
 });
+
+//localStorage.setItem("test", JSON.stringify(test));
