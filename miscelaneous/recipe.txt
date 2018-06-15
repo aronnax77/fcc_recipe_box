@@ -1,0 +1,15 @@
+Beans on toast
+
+1
+
+1 Can of beans
+2 slices of bread
+
+Toast and butter the bread.  Heat the beans and pour onto toast.
+
+"newRecipe": {
+    "title": "Beans on toast",
+    "serves": "1",
+    "ingredianets": "1 Can of beans\n2 slices of bread",
+    "method": "Toast and butter the bread.  Heat the beans and pour onto toast."
+  }

@@ -26,14 +26,18 @@
     <!-- provide a spacer between the header and the leader board -->
     <div class="spacer1"></div>
 
-    <router-view :db="db"></router-view>
+    <router-view  :db="db"
+                  :title="editorTitle"
+                  @new="addNewRecipe"
+
+                  ></router-view>
 
     <!--<recipe-list :db="db"
             ></recipe-list>-->
 
-    <!--<pre>
+    <pre>
       {{ $data }}
-    </pre>-->
+    </pre>
 
   </div><!-- Vue.js app -->
 
@@ -130,18 +134,19 @@
       <div class="col l6 offset-l3 recipe-list z-depth-2 list">
 
         <div class="list-title card center yellow lighten-4 z-depth-2">
-          <h2>Add a New Recipe</h2>
+          <h2>{{ title }}</h2>
         </div>
 
 
 
-        <a class="waves-effect waves-light btn right">Save</a>
+        <a class="waves-effect waves-light btn right"
+            @click="handleInput">Save</a>
 
 
         <div class="divider"></div>
           <div class="section">
             <div class="input-field col l12">
-              <input placeholder="Title" id="recipe-title" type="text" class="validate">
+              <input id="recipe-title" ref="title" type="text" class="validate">
               <label for="recipe-title">Recipe Title</label>
           </div>
         </div>
@@ -149,7 +154,7 @@
         <div class="divider"></div>
         <div class="section">
           <div class="input-field col l3">
-            <input placeholder="No" id="serves" type="number" class="validate">
+            <input id="serves" ref="serves" type="number" class="validate">
             <label for="serves">Serves</label>
           </div>
         </div>
@@ -161,7 +166,7 @@
              <form class="col s12">
                <div class="row">
                  <div class="input-field col l12">
-                   <textarea id="ingredients" class="materialize-textarea"></textarea>
+                   <textarea id="ingredients" ref="ingredients" class="materialize-textarea"></textarea>
                    <label for="ingredients">Ingredients</label>
                  </div>
                </div>
@@ -175,7 +180,7 @@
              <form class="col s12">
                <div class="row">
                  <div class="input-field col l12">
-                   <textarea id="method" class="materialize-textarea"></textarea>
+                   <textarea id="method" ref="method" class="materialize-textarea"></textarea>
                    <label for="method">Method</label>
                  </div>
                </div>
