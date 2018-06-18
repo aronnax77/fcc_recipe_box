@@ -1,0 +1,36 @@
+See https://stackoverflow.com/questions/8537112/when-is-localstorage-cleared
+
+
+ocalStorage is also known as Web Storage, HTML5 Storage, and DOM Storage (these all mean the same thing).
+
+localStorage is similar to sessionStorage, except that data stored in localStorage has no expiration time, while data stored in sessionStorage gets cleared when the browsing session ends (i.e. when the browser is closed).
+
+localStorage is available on all browsers, but persistence is not consistently implemented. In particular, localStorage can be cleared by user action and may be cleared inadvertently (who would think that clearing all cookies also clears localStorage?).
+
+In Firefox, localStorage is cleared when these three conditions are met: (a) user clears recent history, (b) cookies are selected to be cleared, (c) time range is "Everything"
+
+In Chrome, localStorage is cleared when these conditions are met: (a) clear browsing data, (b) "cookies and other site data" is selected, (c) timeframe is "from beginning of time". In Chrome, it is also now possible to delete localStorage for one specific site.
+
+In IE, to clear localStorage: (a) Tools--Internet Options, (b) General tab, (c) delete browsing history on exit, (d) ensure "Cookies and website data" (or "temporary internet files and website files") is selected, (e) consider unchecking "Preserve Favorites website data" at the top
+
+In Safari: (a) Click Safari (b) Preferences (c) Select the Privacy tab (d) Click Remove all website data (e) Click Remove Now
+
+Opera: Despite excellent articles on localStorage from the Opera site, I haven't yet found clear (non-programmatic) instructions to users on how to clear localStorage. If anyone finds, please leave a comment below this answer with reference link.
+
+The Opera dev site has an excellent summary of localStorage:
+
+    The current way of storing data on the client-side — cookies — is a problem:
+
+        Low size: Cookies generally have a maximum size of around 4 KB, which is not much good for storing any kind of complex data
+
+        It’s difficult for cookies to keep track of two or more transactions on the same site, which might be happening in two or more different tabs
+
+        Cookies can be exploited using techniques such as cross site scripting, resulting in security breaches
+
+    Other (less popular) alternatives to cookies include techniques involving query strings, hidden form fields, flash based local shared objects, etc. Each with their own set of problems related to security, ease of use, size restrictions etc. So up until now we have been using pretty bad ways of storing data on the user’s end. We need a better way, which is where Web Storage comes in.
+
+Web Storage
+
+The W3C Web Storage specification was designed as a better way of storing data on the client-side. It has two different types of storage: Session Storage and Local Storage.
+
+Both Session and Local Storage will typically be able to store around 5 MB of data per domain, which is significantly more than cookies.

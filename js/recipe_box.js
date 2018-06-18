@@ -53,7 +53,8 @@ var router = new VueRouter({
 var main = new Vue({
   el: "#app",
   data: {
-    db: myRecipes,
+    db: {},
+    editorStatus: "",
     editorTitle: "Add a New Recipe",
     newRecipe: {}
   },
@@ -68,13 +69,29 @@ var main = new Vue({
     addNewRecipe: function(rec) {
       var key = this.getKey(rec.title);
       this.db[key] = rec;
+      // clear and reset localStorage
+      localStorage.clear();
+      localStorage.setItem("myRecipes", JSON.stringify(this.db));
     },
     getKey: function(str) {
       str = str.toLowerCase();
       str  = str.split(" ").join("_");
       return str;
     }
+  },
+  created: function() {
+    console.log('in beforeMount ' + localStorage.getItem("myRecipes"));
+    if(localStorage.getItem("myRecipes") === null) {
+      localStorage.setItem("myRecipes", JSON.stringify(myRecipes));
+      this.db = myRecipes;
+    } else {
+      var storedData = localStorage.getItem("myRecipes");
+      console.log("storedData = " + storedData);
+      storedData = JSON.parse(storedData);
+      this.db = storedData;
+    }
   }
 });
 
 //localStorage.setItem("test", JSON.stringify(test));
+//localStorage.setItem("test", test);
