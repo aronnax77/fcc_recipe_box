@@ -21,7 +21,7 @@
 
   <div id="app">
     <!-- give our app a nice header -->
-    <logo></logo>
+    <logo @openeditor="openEditorForNewRecipe"></logo>
 
     <!-- provide a spacer between the header and the leader board -->
     <div class="spacer1"></div>
@@ -58,7 +58,8 @@
           <router-link to="/">Home</router-link>
         </li>
         <li>
-          <router-link to="/editor/new">New</router-link>
+          <!--<router-link to="/editor/new">New</router-link>-->
+          <a href="#" @click="$emit('openeditor')">New</a>
         </li>
         <li>
           <router-link to="">About</router-link>
