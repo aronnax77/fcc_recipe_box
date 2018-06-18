@@ -29,7 +29,7 @@
     <router-view  :db="db"
                   :title="editorTitle"
                   @new="addNewRecipe"
-
+                  @del="deleteRecipe"
                   ></router-view>
 
     <!--<recipe-list :db="db"
@@ -106,7 +106,8 @@
         <br>
 
         <a class="waves-effect waves-grey btn-flat right"><i class="material-icons">edit</i></a>
-        <a class="waves-effect waves-grey btn-flat right"><i class="material-icons">delete</i></a>
+        <a class="waves-effect waves-grey btn-flat right"
+           @click="$emit('del', $route.params.id)"><i class="material-icons">delete</i></a>
 
         <br>
 

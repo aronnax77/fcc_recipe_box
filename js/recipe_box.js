@@ -82,6 +82,14 @@ var main = new Vue({
       this.editorStatus = "new";
       this.editorTitle = "Add a New Recipe";
       router.push({path: "/editor/new", component: Editor});
+    },
+    deleteRecipe: function(key) {
+      console.log("now in delete " + key);
+      Vue.delete(this.db, key);
+      router.push({path: "/", component: RecipeList});
+      // clear and reset localStorage
+      localStorage.clear();
+      localStorage.setItem("myRecipes", JSON.stringify(this.db));
     }
   },
   created: function() {
