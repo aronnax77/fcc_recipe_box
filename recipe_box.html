@@ -27,9 +27,15 @@
     <div class="spacer1"></div>
 
     <router-view  :db="db"
+                  :recipekey="currentRecipeKey"
+                  :status="editorStatus"
                   :title="editorTitle"
-                  @new="addNewRecipe"
+                  :oldtitle="currentRecipeTitle"
+                  @new="saveRecipe"
                   @del="deleteRecipe"
+                  @edit="editRecipe"
+                  @update="updateRecord"
+                  @reseteditor="resetEditor"
                   ></router-view>
 
     <!--<recipe-list :db="db"
@@ -105,7 +111,8 @@
 
         <br>
 
-        <a class="waves-effect waves-grey btn-flat right"><i class="material-icons">edit</i></a>
+        <a class="waves-effect waves-grey btn-flat right"
+           @click="$emit('edit', $route.params.id)"><i class="material-icons">edit</i></a>
         <a class="waves-effect waves-grey btn-flat right"
            @click="$emit('del', $route.params.id)"><i class="material-icons">delete</i></a>
 
@@ -149,7 +156,7 @@
           <div class="section">
             <div class="input-field col l12">
               <input id="recipe-title" ref="title" type="text" class="validate">
-              <label for="recipe-title">Recipe Title</label>
+              <label for="recipe-title" class="active">Recipe Title</label>
           </div>
         </div>
 
@@ -157,7 +164,7 @@
         <div class="section">
           <div class="input-field col l3">
             <input id="serves" ref="serves" type="number" class="validate">
-            <label for="serves">Serves</label>
+            <label for="serves" class="active">Serves</label>
           </div>
         </div>
 
@@ -169,7 +176,7 @@
                <div class="row">
                  <div class="input-field col l12">
                    <textarea id="ingredients" ref="ingredients" class="materialize-textarea"></textarea>
-                   <label for="ingredients">Ingredients</label>
+                   <label for="ingredients" class="active">Ingredients</label>
                  </div>
                </div>
              </form>
@@ -183,7 +190,7 @@
                <div class="row">
                  <div class="input-field col l12">
                    <textarea id="method" ref="method" class="materialize-textarea"></textarea>
-                   <label for="method">Method</label>
+                   <label for="method" class="active">Method</label>
                  </div>
                </div>
              </form>
