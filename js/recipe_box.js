@@ -94,8 +94,8 @@ var main = new Vue({
   el: "#app",
   data: {
     db: {},
-    editorStatus: "",
-    editorTitle: "",
+    editorStatus: "new",
+    editorTitle: "Add a New Recipe",
     currentRecipeKey: "",
     currentRecipeTitle: ""
   },
@@ -199,3 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems, {});
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems, {});
+        });

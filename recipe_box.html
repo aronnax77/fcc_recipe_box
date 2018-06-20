@@ -38,18 +38,7 @@
                   @reseteditor="resetEditor"
                   ></router-view>
 
-    <!--<recipe-list :db="db"
-            ></recipe-list>-->
-
-    <!--<pre>
-      {{ $data }}
-    </pre>-->
-
   </div><!-- Vue.js app -->
-
-
-  <!-- provide a spacer at the base of the page -->
-  <div class="spacer2"></div>
 
   <!-- Materialize Modal -->
   <div id="modal1" class="modal">
@@ -66,45 +55,52 @@
   </div>
 
 
-  <!--                  TEMPLATES                   -->
+
+  <!--                        TEMPLATES                          -->
 
   <!-- Title bar shown on every page -->
   <template id="logo">
-    <nav>
-      <div class="nav-wrapper orange">
-        <router-link class="brand-logo " to="/">Recipe Box</router-link>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <!--<router-link to="/editor/new">New</router-link>-->
-          <a href="#" @click="$emit('openeditor')">New</a>
-        </li>
-        <li>
-          <a href="#modal1" class="modal-trigger">About</a>
-          <!--<router-link to="">About</router-link>-->
-        </li>
+    <div>
+      <nav>
+        <div class="nav-wrapper orange">
+          <router-link class="brand-logo " to="/">Recipe Box</router-link>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li>
+            <router-link to="/">Home</router-link>
+          </li>
+          <li>
+            <!--<router-link to="/editor/new">New</router-link>-->
+            <a href="#" @click="$emit('openeditor')">New</a>
+          </li>
+          <li>
+            <a href="#modal1" class="modal-trigger">About</a>
+            <!--<router-link to="">About</router-link>-->
+          </li>
+        </ul>
+        </div>
+      </nav>
+
+      <ul class="sidenav" id="mobile-demo">
+        <li><router-link to="/">Home</router-link></li>
+        <li><a href="#" @click="$emit('openeditor')">New</a></li>
+        <li><a href="#modal1" class="modal-trigger">About</a></li>
       </ul>
-      </div>
-    </nav>
+
+    </div>
   </template>
+
 
   <!-- Recipe list shown on home page -->
   <template id="list">
     <div class="row">
-      <div class="col l6 offset-l3 recipe-list z-depth-2">
+      <div class="col l6 m8 s12 offset-m2 offset-l3 recipe-list z-depth-2">
 
         <div class="list-title center orange accent-1 z-depth-2">
           <h3>Recipes</h3>
         </div>
         <!-- LINK COLLECTION -->
         <div class="card-content collection z-depth-2">
-          <!--<a href="#" class="collection-item"
-          v-for="item in db">{{ item.title }}</a>-->
-          <!--<router-link v-for="item in db"
-                       :to="'/recipe/' + item.id"
-                        >{{ item.title }}</router-link>-->
           <router-link class="collection-item orange-text"
                        v-for="(item, index) in db"
                        :to="'/recipe/' + index"
@@ -115,10 +111,11 @@
     </div>
   </template>
 
+
   <!-- Individual recipe template with dynamic route /recipe/:id -->
   <template id="recipe">
     <div class="row">
-      <div class="col l6 offset-l3 recipe-list z-depth-2 list">
+      <div class="col l6 m8 s12 offset-m2 offset-l3 recipe-list z-depth-2 list">
 
         <div class="list-title center orange accent-1 z-depth-2">
           <h3>{{ db[$route.params.id].title }}</h3>
@@ -155,7 +152,7 @@
   <template id="editor">
     <div class="row">
 
-      <div class="col l6 offset-l3 recipe-list z-depth-2 list">
+      <div class="col l6 m8 s12 offset-m2 offset-l3 recipe-list z-depth-2 list">
 
         <div class="list-title card center orange accent-1 z-depth-2">
           <h3>{{ title }}</h3>
