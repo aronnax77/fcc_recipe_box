@@ -3,6 +3,10 @@ var TitleBar = {
   template: "#logo"
 };
 
+var DefaultView = {
+  template: "#default"
+};
+
 var RecipeList = {
   template: "#list",
   props: ["db"]
@@ -24,10 +28,10 @@ var Editor = {
       }
 
       var record = {};
-      record["title"] = this.$refs.title.value;
-      record["serves"] = this.$refs.serves.value;
-      record["ingredients"] = this.$refs.ingredients.value;
-      record["method"] = this.$refs.method.value;
+      record.title = this.$refs.title.value;
+      record.serves = this.$refs.serves.value;
+      record.ingredients = this.$refs.ingredients.value;
+      record.method = this.$refs.method.value;
 
       if(this.status === "new") {
         this.$emit("new", record);
@@ -79,8 +83,8 @@ var routes = [
   {path: "/", component: RecipeList},         //RecipeList
   {path: "/recipe/:id", component: Recipe},
   {path: "/editor/new", component: Editor},
-  {path: "*", component: NotFoundComponent}
-];
+  {path: "*", component: DefaultView}         //NotFoundComponent}
+  ];
 
 var router = new VueRouter({
   routes: routes
@@ -100,20 +104,22 @@ var main = new Vue({
     logo: TitleBar,
     recipe: Recipe,
     "recipe-list": RecipeList,
-    new: Editor
+    new: Editor,
+    "default-view": DefaultView
   },
   methods: {
     resetEditor: function() {
-      this.editorStatus = "";
-      this.editorTitle = "";
+      this.editorStatus = "new";
+      this.editorTitle = "Add a New Recipe";
       this.currentRecipeKey = "";
       this.currentRecipeTitle = "";
     },
     updateRecord: function(rec) {
       var db = this.db;
-      db[this.currentRecipeKey] = rec;
+      var dbKey = this.currentRecipeKey;
+      db[dbKey] = rec;
       this.resetLocalStorage();
-      console.log("in update record");
+      router.push({path: "/recipe/" + dbKey, component: Recipe});
     },
     // edit and existing recipe
     editRecipe: function(rec) {
@@ -133,6 +139,7 @@ var main = new Vue({
       if(this.editorStatus === "edit") {
         this.currentRecipeKey = key;
         this.currentRecipeTitle = rec.title;
+        router.push({path: "/recipe/" + this.currentRecipeKey, component: Recipe});
       }
     },
     // clear and reset localStorage
