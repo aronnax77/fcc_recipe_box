@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
 body {
   background-color: lightgrey;
   height: 100%;
@@ -9,6 +11,7 @@ body {
 
 /* move the logo away from the left side */
 .brand-logo {
+  font-family: 'Dancing Script', cursive;
   margin-left: 20px;
 }
 
@@ -36,4 +39,12 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   padding: 0 20px;
+}
+
+.bg {
+  background-image: url('../images/recipes.jpg');
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

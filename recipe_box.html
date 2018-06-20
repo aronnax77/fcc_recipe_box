@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  <div id="app">
+  <div id="app" class="bg">
     <!-- give our app a nice header -->
     <logo @openeditor="openEditorForNewRecipe"></logo>
 
@@ -41,9 +41,9 @@
     <!--<recipe-list :db="db"
             ></recipe-list>-->
 
-    <pre>
+    <!--<pre>
       {{ $data }}
-    </pre>
+    </pre>-->
 
   </div><!-- Vue.js app -->
 
@@ -57,8 +57,8 @@
   <!-- Title bar shown on every page -->
   <template id="logo">
     <nav>
-      <div class="nav-wrapper blue darken-3">
-        <router-link class="brand-logo yellow-text lighten-4" to="/">Recipe Box</router-link>
+      <div class="nav-wrapper orange">
+        <router-link class="brand-logo " to="/">Recipe Box</router-link>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li>
           <router-link to="/">Home</router-link>
@@ -80,7 +80,7 @@
     <div class="row">
       <div class="col l6 offset-l3 recipe-list z-depth-2">
 
-        <div class="list-title center yellow lighten-4 z-depth-2">
+        <div class="list-title center orange accent-1 z-depth-2">
           <h3>Recipes</h3>
         </div>
         <!-- LINK COLLECTION -->
@@ -90,7 +90,7 @@
           <!--<router-link v-for="item in db"
                        :to="'/recipe/' + item.id"
                         >{{ item.title }}</router-link>-->
-          <router-link class="collection-item blue-text"
+          <router-link class="collection-item orange-text"
                        v-for="(item, index) in db"
                        :to="'/recipe/' + index"
                         >{{ item.title }}</router-link>
@@ -105,8 +105,8 @@
     <div class="row">
       <div class="col l6 offset-l3 recipe-list z-depth-2 list">
 
-        <div class="list-title center yellow lighten-4 z-depth-2">
-          <h2>{{ db[$route.params.id].title }}</h2>
+        <div class="list-title center orange accent-1 z-depth-2">
+          <h3>{{ db[$route.params.id].title }}</h3>
         </div>
 
         <br>
@@ -142,8 +142,8 @@
 
       <div class="col l6 offset-l3 recipe-list z-depth-2 list">
 
-        <div class="list-title card center yellow lighten-4 z-depth-2">
-          <h2>{{ title }}</h2>
+        <div class="list-title card center orange accent-1 z-depth-2">
+          <h3>{{ title }}</h3>
         </div>
 
 
