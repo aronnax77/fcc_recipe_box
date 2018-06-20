@@ -51,6 +51,20 @@
   <!-- provide a spacer at the base of the page -->
   <div class="spacer2"></div>
 
+  <!-- Materialize Modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>About Recipe Box</h4>
+      <p>Recipe Box is one of the challenges set by FreeCodeCamp in connection with the data visualization series.  The application allows you to add, delete, and edit recipes which are stored on the browsers localStorage.</p>
+      <p>The application is written using Materialize and Vue.js.</p>
+      <p>Author: Richard Myatt</p>
+      <p>Date:   20 June 2018</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="modal-close waves-effect waves-green">Close</a>
+    </div>
+  </div>
+
 
   <!--                  TEMPLATES                   -->
 
@@ -68,7 +82,8 @@
           <a href="#" @click="$emit('openeditor')">New</a>
         </li>
         <li>
-          <router-link to="">About</router-link>
+          <a href="#modal1" class="modal-trigger">About</a>
+          <!--<router-link to="">About</router-link>-->
         </li>
       </ul>
       </div>

@@ -193,3 +193,9 @@ var main = new Vue({
     }
   }
 });
+
+// initialize the materialize model(document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems, {});
+});
