@@ -1,7 +1,7 @@
 <!-- Author: Richard Myatt
-     Date: 30 May 2018
+     Date: 20 June 2018
 
-     An exercise in data visualization and a first use of materialize.
+     An exercise in data visualization and a second use of materialize.
 -->
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@
 </head>
 <body>
 
+  <!-- Vue.js application -->
   <div id="app" class="bg">
     <!-- give our app a nice header -->
     <logo @openeditor="openEditorForNewRecipe"></logo>
@@ -66,17 +67,9 @@
           <router-link class="brand-logo " to="/">Recipe Box</router-link>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <!--<router-link to="/editor/new">New</router-link>-->
-            <a href="#" @click="$emit('openeditor')">New</a>
-          </li>
-          <li>
-            <a href="#modal1" class="modal-trigger">About</a>
-            <!--<router-link to="">About</router-link>-->
-          </li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><a href="#" @click="$emit('openeditor')">New</a></li>
+          <li><a href="#modal1" class="modal-trigger">About</a></li>
         </ul>
         </div>
       </nav>
@@ -148,6 +141,7 @@
     </div>
   </template>
 
+
   <!-- new recipe form -->
   <template id="editor">
     <div class="row">
@@ -166,7 +160,7 @@
 
         <div class="divider"></div>
           <div class="section">
-            <div class="input-field col l12">
+            <div class="input-field col s12 m12 l12">
               <input id="recipe-title" ref="title" type="text" class="validate">
               <label for="recipe-title" class="active">Recipe Title</label>
           </div>
@@ -174,7 +168,7 @@
 
         <div class="divider"></div>
         <div class="section">
-          <div class="input-field col l3">
+          <div class="input-field col s3 m3 l3">
             <input id="serves" ref="serves" type="number" class="validate">
             <label for="serves" class="active">Serves</label>
           </div>
@@ -186,7 +180,7 @@
           <div class="row">
              <form class="col s12">
                <div class="row">
-                 <div class="input-field col l12">
+                 <div class="input-field col s12 m12 l12">
                    <textarea id="ingredients" ref="ingredients" class="materialize-textarea"></textarea>
                    <label for="ingredients" class="active">Ingredients</label>
                  </div>
@@ -200,7 +194,7 @@
           <div class="row">
              <form class="col s12">
                <div class="row">
-                 <div class="input-field col l12">
+                 <div class="input-field col s12 m12 l12">
                    <textarea id="method" ref="method" class="materialize-textarea"></textarea>
                    <label for="method" class="active">Method</label>
                  </div>
@@ -216,10 +210,12 @@
 
   <!-- default view -->
   <template id="default">
-    <div>
-      <h1>Default View</h1>
+    <div id="default-view">
+      <h1>Ooops!!!</h1>
+      <p>The page you are looking for is not available.  It may have been deleted.</p>
     </div>
   </template>
+
 
   <!--JavaScript at end of body for optimized loading-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>

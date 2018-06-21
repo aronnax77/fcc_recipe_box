@@ -1,3 +1,10 @@
+/*   Author: Richard Myatt
+     Date: 20 June 2018
+
+     An exercise in data visualization and a second use of materialize.
+*/
+
+
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 
 body {
@@ -22,18 +29,12 @@ body {
 
 .recipe-list {
   background-color: #fff;
-  height: 100%;
+  min-height: 100%;
 }
 
 .collection-item {
   font-size: 2em;
 }
-
-
-/*#app {
-  min-height: 100vh;
-  border: 2px solid red;
-}*/
 
 pre {
   white-space: pre-wrap;
@@ -42,9 +43,17 @@ pre {
 }
 
 .bg {
-  background-image: url('../images/recipes.jpg');
+  background-image: url('https://thecornishfishmonger.co.uk/media/wysiwyg/recipe-category-images/easter-recipes.jpg');
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#default-view {
+  width: 400px;
+  margin: 50px auto;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #999;
 }

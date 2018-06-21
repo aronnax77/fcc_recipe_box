@@ -1,0 +1,10 @@
+Modifications and Improvements
+21 June 2018
+
+Now that the application has been posted on both CodePen and SoloLearn it is clear that the management of the routing history and particulary the use of the back button on the browser really need to be given a little more thought when producing a Single Page Application.
+
+In this case the Editor is a particular weakness in the design and should perhaps have been given two distinct routes reflecting its use in writing new recipes and in editing existing recipes.
+
+In addition it should, I think, be possible to check if one of the recipes has been deleted and if so then to redirect to a default page.
+
+Although I have produced a default page for this application it does not work where a parameter is used in the case of the individual recipes.  In addition the page should have a different background and perhaps no border arround the div.

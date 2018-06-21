@@ -1,26 +1,37 @@
+/*   Author: Richard Myatt
+     Date: 20 June 2018
 
+     An exercise in data visualization and a second use of materialize.
+*/
+
+// Application nav/title bar component
 var TitleBar = {
   template: "#logo"
 };
 
+// default view component
 var DefaultView = {
   template: "#default"
 };
 
+// recipe list component for home page
 var RecipeList = {
   template: "#list",
   props: ["db"]
 };
 
+// individual recipe component
 var Recipe = {
   template: "#recipe",
   props: ["db"]
 };
 
+// editor component for new recipes and editing existing recipes
 var Editor = {
   template: "#editor",
   props: ["title", "status", "db", "recipekey", "oldtitle"],
   methods: {
+    // method handles the save event
     handleInput: function() {
 
       if(this.$refs.title.value == "") {
@@ -47,6 +58,7 @@ var Editor = {
 
       }
     },
+    // helper method to clear the form on save new recipe
     clearForm: function() {
       this.$refs.title.value = "";
       this.$refs.serves.value = null;
@@ -57,18 +69,20 @@ var Editor = {
   // populate input fields when editing a recipe
   mounted: function() {
     if(this.status === "edit") {
-      this.$refs.title.value = this.db[main.currentRecipeKey].title;
-      this.$refs.serves.value = this.db[main.currentRecipeKey].serves;
-      this.$refs.ingredients.value = this.db[main.currentRecipeKey].ingredients;
-      this.$refs.method.value = this.db[main.currentRecipeKey].method;
+      this.$refs.title.value = this.db[this.recipekey].title;
+      this.$refs.serves.value = this.db[this.recipekey].serves;
+      this.$refs.ingredients.value = this.db[this.recipekey].ingredients;
+      this.$refs.method.value = this.db[this.recipekey].method;
       M.textareaAutoResize(this.$refs.ingredients);
       M.textareaAutoResize(this.$refs.method);
     }
   },
+  // cleanup before leaving the components route
   beforeRouteLeave: function(to, from, next) {
     this.$emit('reseteditor');
     next();
   },
+  // watch the status prop and clear form as required
   watch: {
     status: function() {
       if(this.status === "new") {
@@ -86,11 +100,13 @@ var routes = [
   {path: "*", component: DefaultView}         //NotFoundComponent}
   ];
 
+// define the router
 var router = new VueRouter({
   routes: routes
 });
 
-var main = new Vue({
+// the main vue instance
+new Vue({
   el: "#app",
   data: {
     db: {},
@@ -108,12 +124,14 @@ var main = new Vue({
     "default-view": DefaultView
   },
   methods: {
+    // method to reset data field regarding the editor
     resetEditor: function() {
       this.editorStatus = "new";
       this.editorTitle = "Add a New Recipe";
       this.currentRecipeKey = "";
       this.currentRecipeTitle = "";
     },
+    // method to update a recipe after editing
     updateRecord: function(rec) {
       var db = this.db;
       var dbKey = this.currentRecipeKey;
@@ -191,6 +209,9 @@ var main = new Vue({
       storedData = JSON.parse(storedData);
       this.db = storedData;
     }
+  },
+  mounted: function() {
+      router.push({path: "/", component:RecipeList});
   }
 });
 
@@ -200,7 +221,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Modal.init(elems, {});
 });
 
+// initialize the materialize sidenav
 document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.sidenav');
-          var instances = M.Sidenav.init(elems, {});
-        });
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems, {});
+});
