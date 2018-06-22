@@ -20,9 +20,9 @@
 <body>
 
   <!-- Vue.js application -->
-  <div id="app" class="bg">
+  <div id="app" :class="{bg: show}">
     <!-- give our app a nice header -->
-    <logo @openeditor="openEditorForNewRecipe"></logo>
+    <logo @openeditor="openEditorForNewRecipe" v-show="show"></logo>
 
     <!-- provide a spacer between the header and the leader board -->
     <div class="spacer1"></div>
@@ -212,7 +212,7 @@
   <template id="default">
     <div id="default-view">
       <h1>Ooops!!!</h1>
-      <p>The page you are looking for is not available.  It may have been deleted.</p>
+      <p>The page you are looking for is not available.  It may have been deleted. Please check the URL and try again.</p>
     </div>
   </template>
 

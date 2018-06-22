@@ -94,10 +94,17 @@ var Editor = {
 
 // define the routes
 var routes = [
-  {path: "/", component: RecipeList},         //RecipeList
-  {path: "/recipe/:id", component: Recipe},
-  {path: "/editor/new", component: Editor},
-  {path: "*", component: DefaultView}         //NotFoundComponent}
+  {path: "/", name: "Home", component: RecipeList},         //RecipeList
+  {path: "/recipe/:id", name: "Recipe", component: Recipe},
+  {path: "/editor/new", name: "Editor", component: Editor},
+  {path: "*",
+  name: "Default",
+  component: DefaultView,
+  beforeEnter: (to, from, next) => {
+      main.show = false;
+      next();
+    }
+  }
   ];
 
 // define the router
@@ -106,9 +113,10 @@ var router = new VueRouter({
 });
 
 // the main vue instance
-new Vue({
+var main = new Vue({
   el: "#app",
   data: {
+    show: true,
     db: {},
     editorStatus: "new",
     editorTitle: "Add a New Recipe",
@@ -214,6 +222,19 @@ new Vue({
       router.push({path: "/", component:RecipeList});
   }
 });
+
+//router.beforeEach((to, from, next) => {
+//    console.log("in beforeEach " + main.$route.name);
+//      next();
+//  }
+//);
+
+router.afterEach((to, from) => {
+    if(main.$route.name !== "Default") {
+      main.show = true;
+    }
+  }
+);
 
 // initialize the materialize model(document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
