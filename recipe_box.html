@@ -107,38 +107,46 @@
 
   <!-- Individual recipe template with dynamic route /recipe/:id -->
   <template id="recipe">
-    <div class="row">
-      <div class="col l6 m8 s12 offset-m2 offset-l3 recipe-list z-depth-2 list">
+    <div v-if="db[$route.params.id]">
+      <div class="row">
+        <div class="col l6 m8 s12 offset-m2 offset-l3 recipe-list z-depth-2 list">
 
-        <div class="list-title center orange accent-1 z-depth-2">
-          <h3>{{ db[$route.params.id].title }}</h3>
+          <div class="list-title center orange accent-1 z-depth-2">
+            <h3>{{ db[$route.params.id].title }}</h3>
+          </div>
+
+          <br>
+
+          <a class="waves-effect waves-grey btn-flat right"
+             @click="$emit('edit', $route.params.id)"><i class="material-icons">edit</i></a>
+          <a class="waves-effect waves-grey btn-flat right"
+             @click="$emit('del', $route.params.id)"><i class="material-icons">delete</i></a>
+
+          <br>
+
+          <h5>Serves {{ db[$route.params.id].serves}}</h5>
+
+          <div class="divider"></div>
+          <div class="section">
+            <h3>Ingredients</h3>
+            <div class="flow-text"><pre>{{ db[$route.params.id].ingredients }}</pre></div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="section">
+            <h3>Method</h3>
+            <div class="flow-text"><pre>{{ db[$route.params.id].method }}</pre></div>
+          </div>
+
         </div>
-
-        <br>
-
-        <a class="waves-effect waves-grey btn-flat right"
-           @click="$emit('edit', $route.params.id)"><i class="material-icons">edit</i></a>
-        <a class="waves-effect waves-grey btn-flat right"
-           @click="$emit('del', $route.params.id)"><i class="material-icons">delete</i></a>
-
-        <br>
-
-        <h5>Serves {{ db[$route.params.id].serves}}</h5>
-
-        <div class="divider"></div>
-        <div class="section">
-          <h3>Ingredients</h3>
-          <div class="flow-text"><pre>{{ db[$route.params.id].ingredients }}</pre></div>
-        </div>
-
-        <div class="divider"></div>
-        <div class="section">
-          <h3>Method</h3>
-          <div class="flow-text"><pre>{{ db[$route.params.id].method }}</pre></div>
-        </div>
-
       </div>
     </div>
+
+    <div class="recipe-default center orange accent-1 z-depth-2" v-else>
+      <h3>Recipe Not Available</h3>
+      <p>It may have been deleted.  Please check the URL.</p>
+    </div>
+
   </template>
 
 

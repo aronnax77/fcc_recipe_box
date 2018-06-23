@@ -94,12 +94,14 @@ var Editor = {
 
 // define the routes
 var routes = [
-  {path: "/", name: "Home", component: RecipeList},         //RecipeList
+  {path: "/", name: "Home", component: RecipeList},
   {path: "/recipe/:id", name: "Recipe", component: Recipe},
   {path: "/editor/new", name: "Editor", component: Editor},
   {path: "*",
   name: "Default",
   component: DefaultView,
+  // change the background and do not show the title if we are entering the
+  // default route
   beforeEnter: (to, from, next) => {
       main.show = false;
       next();
@@ -223,13 +225,9 @@ var main = new Vue({
   }
 });
 
-//router.beforeEach((to, from, next) => {
-//    console.log("in beforeEach " + main.$route.name);
-//      next();
-//  }
-//);
-
+// check to see where the route is going and change show to true if not 'Default'
 router.afterEach((to, from) => {
+
     if(main.$route.name !== "Default") {
       main.show = true;
     }
