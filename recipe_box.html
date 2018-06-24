@@ -28,18 +28,18 @@
     <div class="spacer1"></div>
 
     <router-view  :db="db"
-                  :recipekey="currentRecipeKey"
-                  :status="editorStatus"
                   :title="editorTitle"
+                  :status="editorStatus"
+                  :recipekey="currentRecipeKey"
                   :oldtitle="currentRecipeTitle"
                   @new="saveRecipe"
                   @del="deleteRecipe"
                   @edit="editRecipe"
                   @update="updateRecord"
-                  @reseteditor="resetEditor"
                   ></router-view>
 
   </div><!-- Vue.js app -->
+
 
   <!-- Materialize Modal -->
   <div id="modal1" class="modal">

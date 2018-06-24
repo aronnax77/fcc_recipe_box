@@ -29,13 +29,14 @@ var Recipe = {
 // editor component for new recipes and editing existing recipes
 var Editor = {
   template: "#editor",
-  props: ["title", "status", "db", "recipekey", "oldtitle"],
+  props: ["title", "db", "status", "recipekey", "oldtitle"],
   methods: {
     // method handles the save event
     handleInput: function() {
 
       if(this.$refs.title.value == "") {
         alert("The title field must be completed");
+        return;
       }
 
       var record = {};
@@ -48,6 +49,7 @@ var Editor = {
         this.$emit("new", record);
         this.clearForm();
       } else if(this.status === "edit") {
+        console.log("in handleInput status = edit");
         if(this.$refs.title.value === this.oldtitle) {
           this.$emit("update", record);
         } else {
@@ -64,6 +66,14 @@ var Editor = {
       this.$refs.serves.value = null;
       this.$refs.ingredients.value = "";
       this.$refs.method.value = "";
+    },
+    populateForm: function() {
+      this.$refs.title.value = this.db[this.recipekey].title;
+      this.$refs.serves.value = this.db[this.recipekey].serves;
+      this.$refs.ingredients.value = this.db[this.recipekey].ingredients;
+      this.$refs.method.value = this.db[this.recipekey].method;
+      M.textareaAutoResize(this.$refs.ingredients);
+      M.textareaAutoResize(this.$refs.method);
     }
   },
   // populate input fields when editing a recipe
@@ -77,17 +87,11 @@ var Editor = {
       M.textareaAutoResize(this.$refs.method);
     }
   },
-  // cleanup before leaving the components route
-  beforeRouteLeave: function(to, from, next) {
-    this.$emit('reseteditor');
-    next();
-  },
-  // watch the status prop and clear form as required
-  watch: {
-    status: function() {
-      if(this.status === "new") {
-        this.clearForm();
-      }
+  beforeUpdate: function() {
+    if(this.status === "new") {
+      this.clearForm();
+    } else if(this.status === "edit") {
+      this.populateForm();
     }
   }
 };
@@ -96,7 +100,22 @@ var Editor = {
 var routes = [
   {path: "/", name: "Home", component: RecipeList},
   {path: "/recipe/:id", name: "Recipe", component: Recipe},
-  {path: "/editor/new", name: "Editor", component: Editor},
+  {path: "/editor/new", name: "New",
+  component: Editor,
+  beforeEnter: (to, from, next) => {
+    main.editorTitle = "Add a New Recipe";
+    main.editorStatus = "new";
+    next();
+    }
+  },
+  {path: "/editor/edit", name: "Edit",
+  component: Editor,
+  beforeEnter: (to, from, next) => {
+    main.editorTitle = "Edit Recipe";
+    main.editorStatus = "edit";
+    next();
+    }
+  },
   {path: "*",
   name: "Default",
   component: DefaultView,
@@ -120,8 +139,8 @@ var main = new Vue({
   data: {
     show: true,
     db: {},
-    editorStatus: "new",
-    editorTitle: "Add a New Recipe",
+    editorStatus: "",
+    editorTitle: "",
     currentRecipeKey: "",
     currentRecipeTitle: ""
   },
@@ -134,13 +153,6 @@ var main = new Vue({
     "default-view": DefaultView
   },
   methods: {
-    // method to reset data field regarding the editor
-    resetEditor: function() {
-      this.editorStatus = "new";
-      this.editorTitle = "Add a New Recipe";
-      this.currentRecipeKey = "";
-      this.currentRecipeTitle = "";
-    },
     // method to update a recipe after editing
     updateRecord: function(rec) {
       var db = this.db;
@@ -149,14 +161,12 @@ var main = new Vue({
       this.resetLocalStorage();
       router.push({path: "/recipe/" + dbKey, component: Recipe});
     },
-    // edit and existing recipe
+    // edit an existing recipe
     editRecipe: function(rec) {
       var db = this.db;
-      this.editorStatus = "edit";
-      this.editorTitle = "Edit Recipe";
       this.currentRecipeKey = rec;
       this.currentRecipeTitle = db[rec].title;
-      router.push({path: "/editor/new", component: Editor});
+      router.push({path: "/editor/edit", component: Editor});
     },
     // save new or edited recipe
     saveRecipe: function(rec) {
@@ -183,10 +193,6 @@ var main = new Vue({
     },
     // open the editor to process a new recipe
     openEditorForNewRecipe: function() {
-      this.editorStatus = "new";
-      this.editorTitle = "Add a New Recipe";
-      this.currentRecipeKey = "";
-      this.currentRecipeTitle = "";
       router.push({path: "/editor/new", component: Editor});
     },
     // delete an existing recipe
