@@ -1,5 +1,6 @@
 /*   Author: Richard Myatt
      Date: 20 June 2018
+     Revised: 25 June 2018
 
      An exercise in data visualization and a second use of materialize.
 */
@@ -79,12 +80,7 @@ var Editor = {
   // populate input fields when editing a recipe
   mounted: function() {
     if(this.status === "edit") {
-      this.$refs.title.value = this.db[this.recipekey].title;
-      this.$refs.serves.value = this.db[this.recipekey].serves;
-      this.$refs.ingredients.value = this.db[this.recipekey].ingredients;
-      this.$refs.method.value = this.db[this.recipekey].method;
-      M.textareaAutoResize(this.$refs.ingredients);
-      M.textareaAutoResize(this.$refs.method);
+      this.populateForm();
     }
   },
   beforeUpdate: function() {
