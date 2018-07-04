@@ -1,14 +1,15 @@
 /*   Author: Richard Myatt
      Date: 20 June 2018
-     Revised: 25 June 2018
+     Revised: 3 July 2018
 
      An exercise in data visualization and a second use of materialize.
 */
 
-
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 
 body {
+  font-family: 'Roboto Mono', monospace;
   background-color: #eee;
   min-height: 100vh;
 }
@@ -54,5 +55,9 @@ pre {
 #default-view {
   width: 280px;
   margin: auto auto;
+  text-align: justify;
+}
+
+.modal-content p {
   text-align: justify;
 }
